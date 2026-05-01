@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cinematic, emotional design system — soft cream, warm gold, candlelight */
+
+@layer base {
+  :root {
+    --background: 40 50% 97%;
+    --foreground: 30 25% 18%;
+
+    --card: 40 50% 97%;
+    --card-foreground: 30 25% 18%;
+
+    --popover: 40 50% 97%;
+    --popover-foreground: 30 25% 18%;
+
+    --primary: 35 65% 55%;
+    --primary-foreground: 40 50% 98%;
+
+    --secondary: 40 40% 92%;
+    --secondary-foreground: 30 25% 18%;
+
+    --muted: 40 30% 90%;
+    --muted-foreground: 30 15% 45%;
+
+    --accent: 45 80% 70%;
+    --accent-foreground: 30 25% 18%;
+
+    --destructive: 0 60% 55%;
+    --destructive-foreground: 40 50% 98%;
+
+    --border: 40 30% 85%;
+    --input: 40 30% 88%;
+    --ring: 35 65% 55%;
+
+    --radius: 1rem;
+
+    --cream: 40 60% 96%;
+    --cream-deep: 38 50% 92%;
+    --honey: 38 75% 70%;
+    --gold: 42 80% 65%;
+    --warm-glow: 45 90% 75%;
+    --dusk: 25 35% 22%;
+    --ink: 25 40% 15%;
+    --whisper: 30 18% 45%;
+    --rose: 15 55% 75%;
+    --candle: 38 95% 78%;
+
+    /* Cinematic gradients */
+    --gradient-dawn: radial-gradient(ellipse at 50% 100%, hsl(45 90% 80%) 0%, hsl(35 60% 45%) 30%, hsl(25 35% 15%) 70%, hsl(20 25% 8%) 100%);
+    --gradient-cream: linear-gradient(180deg, hsl(40 60% 97%) 0%, hsl(38 55% 93%) 100%);
+    --gradient-warm: linear-gradient(160deg, hsl(40 70% 95%) 0%, hsl(35 65% 88%) 50%, hsl(30 60% 82%) 100%);
+    --gradient-letter: linear-gradient(180deg, hsl(42 65% 94%) 0%, hsl(38 50% 87%) 100%);
+    --gradient-rain: linear-gradient(180deg, hsl(220 15% 75%) 0%, hsl(215 18% 68%) 100%);
+    --gradient-promise: linear-gradient(180deg, hsl(35 55% 88%) 0%, hsl(40 70% 92%) 100%);
+    --gradient-sunrise: linear-gradient(180deg, hsl(15 70% 65%) 0%, hsl(25 80% 75%) 25%, hsl(38 90% 82%) 55%, hsl(48 100% 90%) 85%, hsl(55 100% 95%) 100%);
+    --gradient-final: radial-gradient(ellipse at center, hsl(45 95% 90%) 0%, hsl(38 75% 80%) 50%, hsl(25 50% 60%) 100%);
+
+    --gradient-gold-text: linear-gradient(135deg, hsl(35 80% 45%), hsl(42 90% 60%), hsl(28 75% 40%));
+
+    --glow-soft: 0 0 40px hsl(45 90% 75% / 0.5), 0 0 80px hsl(38 80% 65% / 0.3);
+    --glow-warm: 0 0 60px hsl(38 80% 70% / 0.7), 0 0 120px hsl(42 90% 65% / 0.4);
+    --glow-candle: 0 0 30px hsl(45 100% 75% / 0.6);
+    --shadow-letter: 0 40px 100px -25px hsl(30 50% 25% / 0.35), 0 10px 30px -10px hsl(30 40% 30% / 0.2);
+    --shadow-paper: 0 1px 0 hsl(40 30% 80%), 0 20px 40px -15px hsl(30 40% 30% / 0.2);
+
+    --ease-cinema: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: hsl(var(--gold) / 0.4);
+    color: hsl(var(--ink));
+  }
+
+  .font-display { font-family: 'Playfair Display', serif; }
+  .font-script { font-family: 'Dancing Script', cursive; }
+}
+
+@layer components {
+  .section-shell {
+    @apply relative flex min-h-screen w-full items-center justify-center px-6 py-24;
+  }
+
+  .text-shell {
+    @apply mx-auto w-full max-w-[620px] text-center;
+  }
+
+  .line {
+    @apply font-display text-[1.6rem] leading-[1.6] text-dusk sm:text-[2rem] md:text-[2.2rem];
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+
+  .line-soft { color: hsl(var(--whisper)); }
+
+  .line-script {
+    @apply font-script text-4xl sm:text-5xl;
+    color: hsl(var(--ink));
+  }
+
+  .line-gold {
+    background: var(--gradient-gold-text);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s ease infinite;
+  }
+
+  .btn-glow {
+    @apply relative inline-flex items-center justify-center rounded-full px-12 py-5 font-display text-lg tracking-widest transition-all duration-700;
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--honey)));
+    color: hsl(var(--ink));
+    box-shadow: var(--glow-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .btn-glow::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 9999px;
+    padding: 2px;
+    background: linear-gradient(135deg, hsl(var(--candle)), hsl(var(--gold)), hsl(var(--rose)));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0.8;
+  }
+
+  .btn-glow:hover {
+    transform: scale(1.06) translateY(-2px);
+    box-shadow: var(--glow-warm);
+  }
+
+  /* Decorative ornament — small flourish line */
+  .ornament {
+    @apply mx-auto flex items-center justify-center gap-3 text-dusk/40;
+  }
+  .ornament::before, .ornament::after {
+    content: "";
+    height: 1px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, hsl(var(--dusk) / 0.4), transparent);
+  }
+
+  /* Drop cap for letter */
+  .drop-cap::first-letter {
+    @apply font-display;
+    font-size: 4.5rem;
+    line-height: 1;
+    float: left;
+    margin: 0.1em 0.15em 0 0;
+    color: hsl(var(--gold));
+    font-style: italic;
+    text-shadow: 0 2px 12px hsl(var(--gold) / 0.4);
+  }
+
+  /* Paper texture for letter */
+  .paper {
+    background:
+      radial-gradient(ellipse at top, hsl(45 70% 96%), hsl(40 55% 90%)),
+      repeating-linear-gradient(0deg, transparent, transparent 38px, hsl(30 30% 80% / 0.15) 38px, hsl(30 30% 80% / 0.15) 39px);
+    box-shadow: var(--shadow-letter);
+    border: 1px solid hsl(40 40% 80% / 0.5);
+  }
+}
+
+@layer utilities {
+  .text-whisper { color: hsl(var(--whisper)); }
+  .text-dusk { color: hsl(var(--dusk)); }
+  .text-ink { color: hsl(var(--ink)); }
+
+  .bg-dawn { background: var(--gradient-dawn); }
+  .bg-cream { background: var(--gradient-cream); }
+  .bg-warm { background: var(--gradient-warm); }
+  .bg-letter { background: var(--gradient-letter); }
+  .bg-rain { background: var(--gradient-rain); }
+  .bg-promise { background: var(--gradient-promise); }
+  .bg-sunrise { background: var(--gradient-sunrise); }
+  .bg-final { background: var(--gradient-final); }
+
+  .animate-float { animation: float 8s ease-in-out infinite; }
+  .animate-float-slow { animation: float 14s ease-in-out infinite; }
+  .animate-heartbeat { animation: heartbeat 2.4s ease-in-out infinite; }
+  .animate-rain { animation: rain 12s linear infinite; }
+  .animate-slow-zoom { animation: slow-zoom 20s ease-in-out infinite alternate; }
+  .animate-dawn-rise { animation: dawn-rise 4s var(--ease-cinema) forwards; }
+  .animate-shimmer { background-size: 200% 200%; animation: shimmer 8s ease infinite; }
+  .animate-twinkle { animation: twinkle 4s ease-in-out infinite; }
+  .animate-drift { animation: drift 30s linear infinite; }
+  .animate-glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  15% { transform: scale(1.12); opacity: 0.7; }
+  30% { transform: scale(1); opacity: 0.4; }
+  45% { transform: scale(1.08); opacity: 0.55; }
+}
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes dawn-rise {
+  from { filter: brightness(0.3) saturate(0.6); }
+  to { filter: brightness(1) saturate(1); }
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes rain {
+  0% { transform: translateY(-10%); }
+  100% { transform: translateY(110%); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-40px, 30px); }
+}
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+@keyframes letter-unfold {
+  0% { transform: perspective(1400px) rotateX(-92deg) translateY(-30px); transform-origin: top center; opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: perspective(1400px) rotateX(0deg) translateY(0); opacity: 1; }
+}
+.animate-letter-unfold {
+  animation: letter-unfold 2.2s var(--ease-cinema) forwards;
+}
